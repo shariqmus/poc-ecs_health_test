@@ -1,0 +1,38 @@
+{
+    "family": "health_poc",
+    "containerDefinitions": [
+      {
+        "image": "522614987397.dkr.ecr.us-east-1.amazonaws.com/shariq-poc/health-test:0.1",
+        "name": "sample-health-test",
+        "cpu": 0,
+        "healthCheck": {
+            "command": [ "CMD-SHELL", "curl -f http://localhost:5000 || exit 1" ],
+            "startPeriod": 10
+          },
+        "essential": true,
+        "logConfiguration": {
+          "logDriver": "none",
+          "options": null
+        },
+        "entryPoint": [
+        ],
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "containerPort": 80,
+            "protocol": "tcp"
+          }
+        ],
+        "command": [
+          "/app/runscript.sh"
+        ]
+      }
+    ],
+    "cpu": "512",
+    "memory": "512",
+    "requiresCompatibilities": [
+      "EC2"
+    ],
+    "networkMode": "bridge"
+  }
+
